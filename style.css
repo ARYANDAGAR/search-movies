@@ -1,8 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-  --primary-color: #ef690f;
-  --secondary-color: #695037;
+  --primary-color: #478837;
+  --secondary-color: #1f1f1f;
+  --accent-color: #ffda79;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --text-light: #f5f5f5;
 }
 
 * {
@@ -10,103 +13,139 @@
 }
 
 body {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, #2b2b2b, #141414);
   font-family: 'Poppins', sans-serif;
   margin: 0;
+  color: var(--text-light);
+  min-height: 100vh;
 }
 
+/* ---------------- Header ---------------- */
 header {
-  padding: 1rem;
+  padding: 1.2rem 2rem;
   display: flex;
-  justify-content: flex-end;
-  background-color: var(--secondary-color);
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .search {
-  background-color: transparent;
+  background-color: rgba(64, 57, 57, 0.1);
   border: 2px solid var(--primary-color);
   border-radius: 50px;
   font-family: inherit;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  color: #fff;
+  padding: 0.6rem 1.4rem;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+  width: 280px;
 }
 
 .search::placeholder {
-  color: #d8d9f1;
+  color: #bbb;
 }
 
 .search:focus {
   outline: none;
-  background-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px var(--primary-color);
 }
 
+/* ---------------- Movie Grid ---------------- */
 main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
 }
 
+/* ---------------- Movie Card ---------------- */
 .movie {
-  width: 300px;
-  margin: 1rem;
-  background-color: var(--secondary-color);
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
+  width: 270px;
+  background: var(--card-bg);
+  border-radius: 20px;
   overflow: hidden;
-  border-radius: 3px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.movie:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .movie img {
   width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--primary-color);
 }
 
+/* ---------------- Info Section ---------------- */
 .movie-info {
-  color: #eee;
+  color: var(--text-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap:0.2rem;
-  padding: 0.5rem 1rem 1rem;
-  letter-spacing: 0.5px;
+  padding: 1rem 1rem 0.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
 }
 
 .movie-info h3 {
-  margin-top: 0;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .movie-info span {
-  background-color: var(--primary-color);
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  font-weight: bold;
+  background: var(--primary-color);
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 0 8px var(--primary-color);
 }
 
-.movie-info span.green {
-  color: lightgreen;
-}
-
-.movie-info span.orange {
-  color: orange;
-}
-
-.movie-info span.red {
-  color: red;
-}
-
+/* ---------------- Overview (Hover Slide) ---------------- */
 .overview {
-  background-color: #fff;
-  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #111;
+  padding: 1.5rem;
   position: absolute;
   left: 0;
   bottom: 0;
   right: 0;
   max-height: 100%;
-  transform: translateY(101%);
+  transform: translateY(100%);
   overflow-y: auto;
-  transition: transform 0.3s ease-in;
+  transition: transform 0.4s ease-in-out;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .movie:hover .overview {
   transform: translateY(0);
+}
+
+/* ---------------- Scrollbar Styling ---------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
